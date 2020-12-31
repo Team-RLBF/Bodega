@@ -19,6 +19,7 @@ export const AddItem = () => {
   const [category, setCategory] = useState("Dairy");
   const [unit, setUnit] = useState("");
   const [note, setNote] = useState("");
+  const [par, setPar] = useStare("")
 
   //onClick Function (Save Changes) to sent user data
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export const AddItem = () => {
       list_qty,
       category,
       note,
-      qty,
+      qty:list_qty,
       par
     };
     if(displayShopping) dispatch(addShoppingItem(dataSet))
@@ -149,6 +150,21 @@ export const AddItem = () => {
                       </div>
                     </div>
 
+                    {showPantry && <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Quantity
+                      </label>
+                      <div className="mt-1 relative rounded-md shadow-sm">
+                        <input
+                          className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
+                          type="text"
+                          placeholder={par}
+                          value={par}
+                          onChange={(e) => setPar(e.target.value)}
+                        ></input>
+                      </div>
+                    </div>
+                    }
                     <div className="w-full">
                       <label className="block text-sm font-medium text-gray-700">
                         Unit
