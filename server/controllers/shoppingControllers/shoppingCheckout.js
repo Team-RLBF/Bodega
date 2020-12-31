@@ -4,7 +4,7 @@ const shoppingCheckout = (req, res, next) => {
   console.log('in shoppingCheckout');
   // Find items where buy_qty is positive
   // list of items is called basket
-  let qStr = `SELECT * FROM shopping WHERE user_id = ${res.locals.userId} AND buy_qty > 0;`;
+  let qStr = `SELECT * FROM shopping WHERE user_id = '1' AND buy_qty > 0;`;
   db.query(qStr)
     .then((qres) => {
       const basket = qres.rows;
@@ -31,7 +31,7 @@ const shoppingCheckout = (req, res, next) => {
           // if a pantry item does not exist add a pantry item, and update shopping qty
         } else {
           console.log('in else...');
-          qStr = `INSERT INTO pantry (user_id, item_name, note, unit, qty, category) VALUES ('${res.locals.userId}','${item.item_name}', '${item.note}', '${item.unit}', '${item.buy_qty}', '${item.category}') RETURNING _id;`;
+          qStr = `INSERT INTO pantry (user_id, item_name, note, unit, qty, category) VALUES ('1','${item.item_name}', '${item.note}', '${item.unit}', '${item.buy_qty}', '${item.category}') RETURNING _id;`;
           return db.query(qStr).then((qres) => {
             const pantry_id = qres.rows[0];
             qStr = `UPDATE shopping 
@@ -47,7 +47,7 @@ const shoppingCheckout = (req, res, next) => {
     })
     // delete items from shopping list if list_qty = 0 or null
     .then(() => {
-      qStr = `DELETE FROM shopping WHERE user_id = ${res.locals.userId} AND (list_qty = 0 OR list_qty IS NULL);`;
+      qStr = `DELETE FROM shopping WHERE user_id = '1' AND (list_qty = 0 OR list_qty IS NULL);`;
       db.query(qStr);
       return next();
     })
