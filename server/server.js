@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 
 const apiRouter = require('./routes/api.js');
-const authRouter = require('./routes/authRoutes.js');
+// const authRouter = require('./routes/authRoutes.js');
 
 app.use(express.json());
 
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, '../index.html'));
   });
 }
-app.use('/', authRouter);
+// app.use('/', authRouter);
 app.use('/api', apiRouter);
 
 app.use('*', (req, res) =>

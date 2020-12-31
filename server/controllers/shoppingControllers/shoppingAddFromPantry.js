@@ -12,8 +12,8 @@ const shoppingAddFromPantry = (req, res, next) => {
     })
     .then((pantryItem) => {
       if (!pantryItem) {
-        const qStr = `INSERT INTO shopping (user_id, pantry_id, item_name, note, unit, list_qty, category) 
-  SELECT user_id, _id, item_name, note, unit, '1', category
+        const qStr = `INSERT INTO shopping (user_id, pantry_id, item_name, note, unit, list_qty, buy_qty, category) 
+  SELECT user_id, _id, item_name, note, unit, '1', '0', category
   FROM pantry
   WHERE _id = ${item_id};`;
         db.query(qStr);

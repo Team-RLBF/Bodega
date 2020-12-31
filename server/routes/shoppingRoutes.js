@@ -8,7 +8,6 @@ const shopping = Router();
 // output: entire shopping table as JSON
 shopping.post(
   '/submit',
-  authController.authCheckCookie,
   shoppingController.submit,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
@@ -18,7 +17,7 @@ shopping.post(
 // output: entire shopping table as JSON
 shopping.post(
   '/update/:id',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.update,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
@@ -28,7 +27,7 @@ shopping.post(
 // output: entire shopping table as JSON
 shopping.delete(
   '/remove/:id',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.remove,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
@@ -38,7 +37,7 @@ shopping.delete(
 // output: entire shopping table as JSON
 shopping.post(
   '/checkout',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.checkout,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
@@ -46,7 +45,7 @@ shopping.post(
 
 shopping.post(
   '/refresh',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.refresh,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
@@ -54,7 +53,7 @@ shopping.post(
 
 shopping.post(
   '/addFromPantry/:id',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.addFromPantry,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
@@ -63,7 +62,7 @@ shopping.post(
 // output: entire shopping table as JSON
 shopping.get(
   '/',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.load,
   (req, res) => {
     return res.status(200).json(res.locals.shopping);
@@ -72,7 +71,7 @@ shopping.get(
 
 shopping.post(
   '/listUp/:id',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.listUp,
   shoppingController.load,
   (req, res) => {
@@ -82,7 +81,7 @@ shopping.post(
 
 shopping.post(
   '/listDown/:id',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.listDown,
   shoppingController.load,
   (req, res) => {
@@ -92,7 +91,7 @@ shopping.post(
 
 shopping.post(
   '/buyUp/:id',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.buyUp,
   shoppingController.load,
   (req, res) => {
@@ -102,7 +101,7 @@ shopping.post(
 
 shopping.post(
   '/buyDown/:id',
-  authController.authCheckCookie,
+  // authController.authCheckCookie,
   shoppingController.buyDown,
   shoppingController.load,
   (req, res) => {

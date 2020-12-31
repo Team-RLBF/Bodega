@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  loadShoppingItem,
-  LOAD_SHOPPING_ITEM,
+  getShoppingItems,
 } from "../../store/actions/shoppingActions";
 import UpdateButton from "./UpdateButton.jsx";
 import DeleteButton from "./DeleteButton.jsx";
@@ -15,8 +14,8 @@ const ShoppingItem = () => {
   const shoppingList = useSelector((state) => state.shopping.shoppingList);
 
   useEffect(() => {
-    dispatch(loadShoppingItem("text"));
-  }, []);
+    dispatch(getShoppingItems());
+  }, [dispatch]);
   console.log(shoppingList);
 
   return (

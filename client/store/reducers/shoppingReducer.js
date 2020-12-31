@@ -1,13 +1,13 @@
 import { LOAD_SHOPPING_ITEM } from "../actions/shoppingActions.js";
 
-const initialState = {
-  shoppingList: [{ itemName: "Milk", category: "Dairy", qty: 3 }],
-  pantryList: [],
-  editedShoppingItem: {},
-  editedPantryItem: {},
-};
+// const initialState = {
+//   shoppingList: [{ itemName: "Milk", category: "Dairy", qty: 3 }],
+//   pantryList: [],
+//   editedShoppingItem: {},
+//   editedPantryItem: {},
+// };
 
-const shoppingReducer = (state = initialState, action) => {
+const shoppingReducer = (state = { shoppingList: [] }, action) => {
   switch (action.type) {
     case LOAD_SHOPPING_ITEM: {
       console.log(action.payload);
