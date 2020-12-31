@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 const bcrypt = require("bcryptjs");
 const db = require("../../db.js");
-=======
-const db = require('../../db.js');
-const bcrypt = require('bcryptjs');
->>>>>>> 13d7eb9530d6ac7a584088ee9a0e7c4e2b310ba0
 
 const authSignin = (req, res, next) => {
   // write code here
