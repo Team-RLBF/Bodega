@@ -1,6 +1,6 @@
 import React from "react";
 
-const UpdateButton = () => {
+const UpdateButtonPantry = () => {
   return (
     <>
       <button
@@ -14,4 +14,4 @@ const UpdateButton = () => {
   );
 };
 
-export default UpdateButton;
+export default UpdateButtonPantry;

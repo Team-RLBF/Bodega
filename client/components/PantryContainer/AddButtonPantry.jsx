@@ -1,6 +1,6 @@
 import React from "react";
 
-const MinusButton = () => {
+const MinusButtonPantry = () => {
   return (
     <div>
       <span className="relative z-0 inline-flex shadow-md rounded-md">
@@ -30,4 +30,4 @@ const MinusButton = () => {
   );
 };
 
-export default MinusButton;
+export default MinusButtonPantry;

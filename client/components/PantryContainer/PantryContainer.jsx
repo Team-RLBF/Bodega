@@ -1,17 +1,17 @@
 import React from "react";
-import ShoppingItem from "./ShoppingItem.jsx";
+import PantryItem from "./PantryItem.jsx";
 
-const ShoppingContainer = () => {
+const PantryContainer = () => {
   return (
     <div>
       <div className="bg-white shadow overflow-hidden sm:rounded-md">
         <ul className="divide-y divide-gray-200">
-          <ShoppingItem />
-          <ShoppingItem />
+          <PantryItem />
+          <PantryItem />
         </ul>
       </div>
     </div>
   );
 };
 
-export default ShoppingContainer;
+export default PantryContainer;

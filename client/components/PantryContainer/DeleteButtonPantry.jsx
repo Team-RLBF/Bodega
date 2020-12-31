@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteButton = () => {
+const DeleteButtonPantry = () => {
   return (
     <>
       <button
@@ -14,4 +14,4 @@ const DeleteButton = () => {
   );
 };
 
-export default DeleteButton;
+export default DeleteButtonPantry;
