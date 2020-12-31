@@ -9,6 +9,7 @@ import DeleteButton from "./DeleteButton.jsx";
 import MinusButton from "./MinusButton.jsx";
 import AddButton from "./AddButton.jsx";
 
+
 const ShoppingItem = () => {
   const dispatch = useDispatch();
   const shoppingList = useSelector((state) => state.shopping.shoppingList);

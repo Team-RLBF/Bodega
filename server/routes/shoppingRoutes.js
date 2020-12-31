@@ -8,7 +8,6 @@ const shopping = Router();
 // output: entire shopping table as JSON
 shopping.post(
   '/submit',
-  // authController.authCheckCookie,
   shoppingController.submit,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
