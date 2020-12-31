@@ -6,7 +6,7 @@ import { Header } from "./Header/Header.jsx";
 
 const App = () => {
   return (
-    <div>
+    <div className="container mx-auto bg-gray-200">
       <Header />
       <TabsContainer />
       <ShoppingContainer />
