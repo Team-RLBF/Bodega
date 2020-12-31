@@ -5,12 +5,14 @@ import {
 } from "../../store/actions/shoppingActions";
 import UpdateButton from "./UpdateButton.jsx";
 import DeleteButton from "./DeleteButton.jsx";
-import MinusButton from "./MinusButton.jsx";
-import AddButton from "./AddButton.jsx";
+import MinusListButton from "./MinusListButton.jsx";
+import AddListButton from "./AddListButton.jsx";
+import MinusBuyButton from "./MinusBuyButton.jsx";
+import AddBuyButton from "./AddBuyButton.jsx";
 
 
 const ShoppingItem = ({ newItem }) => {
-  const { item_name, category, list_qty, note, unit, _id } = newItem;
+  const { item_name, category, list_qty, buy_qty, note, unit, _id } = newItem;
 
   return (
     <>
@@ -28,18 +30,38 @@ const ShoppingItem = ({ newItem }) => {
             </div>
           </div>
 
+          
+
           <div className="flex flex-column justify-center items-center mt-2 ">
+            <div>
+              <strong >Cart Qty</strong>
+            </div>
+            <div className='flex flex-row justify-center items-center'>
+              <div className="text-3xl font-semibold text-blue-700  truncate">{buy_qty}</div>
+              <div className='ml-3'>{unit}</div>
+            </div>
+            <div className="flex flex-row">
+              <MinusBuyButton _id={_id} />
+              <AddBuyButton _id={_id}/>
+            </div>
+          </div>
+
+          <div className="flex flex-column justify-center items-center mt-2 ">
+            <div>
+              <strong >Required Qty</strong>
+            </div>
             <div className='flex flex-row justify-center items-center'>
               <div className="text-3xl font-semibold text-blue-700  truncate">{list_qty}</div>
               <div className='ml-3'>{unit}</div>
             </div>
             <div className="flex flex-row">
-              <MinusButton />
-              <AddButton />
+              <MinusListButton _id={_id} />
+              <AddListButton _id={_id}/>
             </div>
           </div>
+
           <div className=" flex flex-column justify-center items-center mt-2 pr-5">
-            <UpdateButton />
+            <UpdateButton item={newItem}/>
             <DeleteButton _id={_id} />
           </div>
         </div>
