@@ -7,7 +7,6 @@ import {
 import { useDispatch } from 'react-redux';
 
 const DeleteButton = ({ _id }) => {
-  console.log(_id)
   const dispatch = useDispatch();
 
   return (
