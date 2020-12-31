@@ -71,7 +71,7 @@ const shoppingCheckout = (req, res, next) => {
             // if a pantry item does not exist add a pantry item, and update shopping qty
           } else {
             console.log('in else...');
-            qStr = `INSERT INTO pantry (user_id, item_name, note, unit, qty, category) VALUES ('1','${item.item_name}', '${item.note}', '${item.unit}', '${item.buy_qty}', '${item.category}') RETURNING *;`;
+            qStr = `INSERT INTO pantry (user_id, item_name, note, unit, qty, par, category) VALUES ('1','${item.item_name}', '${item.note}', '${item.unit}', '${item.buy_qty}', '0', ${item.category}') RETURNING *;`;
             return (
               db
                 .query(qStr)

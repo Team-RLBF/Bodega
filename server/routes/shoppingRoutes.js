@@ -64,6 +64,7 @@ shopping.post(
 shopping.get(
   '/',
   // authController.authCheckCookie,
+  shoppingController.refresh,
   shoppingController.load,
   (req, res) => {
     return res.status(200).json(res.locals.shopping);

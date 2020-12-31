@@ -2,7 +2,7 @@ const db = require('../../db.js');
 
 const shoppingGet = (req, res, next) => {
   console.log('in shoppingGet');
-  let qStr = `SELECT * FROM shopping WHERE user_id = '1';`;
+  let qStr = `SELECT shopping.*, pantry.qty AS pantry_qty, pantry.par AS pantry_par FROM shopping LEFT OUTER JOIN pantry ON shopping.pantry_id = pantry._id;`;
   db.query(qStr)
     .then((qres) => {
       res.locals.shopping = qres.rows;
