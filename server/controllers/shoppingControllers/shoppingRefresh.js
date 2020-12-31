@@ -1,18 +1,18 @@
-const db = require('../../dbSetup.js');
+const db = require('../../db.js');
 
 const shoppingRefresh = (req, res, next) => {
   console.log('in shoppingRefresh');
-  // remove items from shopping that were where (list_qty <= 0)
+  // remove items from shopping where (list_qty <= 0)
   // find items in pantry that are low on stock where (par > qty)
   // add items to shopping (list_qty = par - qty, pantry_id = pantry._id)
-  let qStr = `DELETE FROM shopping WHERE list_qty <= 0;`;
+  let qStr = `DELETE FROM shopping WHERE user_id = ${res.locals.userId} AND list_qty <= 0;`;
   db.query(qStr)
     .then((qres) => {
       console.log(
         'file: shoppingRefresh.js ~ line 11 ~ .then ~ qres.rows',
         qres.rows,
       );
-      qStr = `SELECT * FROM pantry WHERE par > qty;`;
+      qStr = `SELECT * FROM pantry WHERE user_id = ${res.locals.userId} AND par > qty;`;
       return db.query(qStr);
     })
     .then((qres) => {
@@ -36,10 +36,10 @@ const shoppingRefresh = (req, res, next) => {
           })
           .then((pantryItem) => {
             if (!pantryItem) {
-              qStr = `INSERT INTO shopping (pantry_id, item_name, note, unit, list_qty, category) 
-        VALUES ('${newItem._id}', '${newItem.item_name}', '${newItem.note}', '${
-                newItem.unit
-              }', 
+              qStr = `INSERT INTO shopping (user_id, pantry_id, item_name, note, unit, list_qty, category) 
+        VALUES ('${res.locals.userId}','${newItem._id}', '${
+                newItem.item_name
+              }', '${newItem.note}', '${newItem.unit}', 
           '${newItem.par - newItem.qty}', '${newItem.category}');`;
               db.query(qStr);
             } else {

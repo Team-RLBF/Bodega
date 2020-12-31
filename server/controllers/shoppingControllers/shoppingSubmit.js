@@ -1,4 +1,4 @@
-const db = require('../../dbSetup.js');
+const db = require('../../db.js');
 
 const shoppingSubmit = (req, res, next) => {
   const newItem = req.body.newItem;
@@ -6,7 +6,7 @@ const shoppingSubmit = (req, res, next) => {
     'file: shoppingSubmit.js ~ line 5 ~ shoppingSubmit ~ newItem',
     newItem,
   );
-  const qStr = `INSERT INTO shopping (item_name, note, unit, list_qty, category) VALUES (${newItem.item_name}, ${newItem.note}, ${newItem.unit}, ${newItem.list_qty}, ${newItem.category})
+  const qStr = `INSERT INTO shopping (user_id, item_name, note, unit, list_qty, category) VALUES (${res.locals.userId}, ${newItem.item_name}, ${newItem.note}, ${newItem.unit}, ${newItem.list_qty}, ${newItem.category})
   RETURNING *;`;
   db.query(qStr)
     .then((qres) => {

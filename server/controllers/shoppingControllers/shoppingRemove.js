@@ -1,4 +1,4 @@
-const db = require('../../dbSetup.js');
+const db = require('../../db.js');
 
 const shoppingRemove = (req, res, next) => {
   const item_id = req.params.id;

@@ -1,4 +1,4 @@
-const db = require('../../dbSetup.js');
+const db = require('../../db.js');
 
 const shoppingAddFromPantry = (req, res, next) => {
   const item_id = req.params.id;
@@ -12,8 +12,8 @@ const shoppingAddFromPantry = (req, res, next) => {
     })
     .then((pantryItem) => {
       if (!pantryItem) {
-        const qStr = `INSERT INTO shopping (pantry_id, item_name, note, unit, list_qty, category) 
-  SELECT _id, item_name, note, unit, '1', category
+        const qStr = `INSERT INTO shopping (user_id, pantry_id, item_name, note, unit, list_qty, category) 
+  SELECT user_id, _id, item_name, note, unit, '1', category
   FROM pantry
   WHERE _id = ${item_id};`;
         db.query(qStr);

@@ -5,6 +5,11 @@ const remove = require('./shoppingRemove.js');
 const refresh = require('./shoppingRefresh.js');
 const checkout = require('./shoppingCheckout.js');
 const addFromPantry = require('./shoppingAddFromPantry.js');
+const listUp = require('./shoppingListUp.js');
+const listDown = require('./shoppingListDown.js');
+const buyUp = require('./shoppingBuyUp.js');
+const buyDown = require('./shoppingBuyDown.js');
+
 module.exports = {
   load,
   submit,
@@ -13,4 +18,8 @@ module.exports = {
   refresh,
   checkout,
   addFromPantry,
+  buyUp,
+  buyDown,
+  listUp,
+  listDown,
 };

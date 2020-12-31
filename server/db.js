@@ -1,17 +1,16 @@
-const { Pool } = require('pg');
+const pg = require('pg');
 const dotenv = require('dotenv');
 
 dotenv.config();
-
-const pool = new Pool({
-    connectionString: process.env.PG_URI,
-});
+const dbconfig = {
+  connectionString: process.env.PG_URI,
+};
+console.log(dbconfig);
+const db = new pg.Pool(dbconfig);
 
 module.exports = {
-    query: (text, params, callback) => {
-        console.log('executed query', text);
-        return pool.query(text, params, callback);
-    },
+  query: (text, params, callback) => {
+    console.log('executed query', text);
+    return db.query(text, params, callback);
+  },
 };
-
-// module.exports = pool;

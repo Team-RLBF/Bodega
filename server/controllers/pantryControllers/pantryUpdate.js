@@ -1,33 +1,32 @@
 const db = require('../../db.js');
 
-const pantryUpdate = async (req, res, next) => {
-     // destructuring from request
-     let {
+const pantryUpdate = (req, res, next) => {
+    // destructuring from request
+    let {
         item_name,
-        note: newNote,
-        unit: newUnit,
-        qty: newQty,
+        note,
+        unit,
+        qty,
         category,
-        par: newPar,
+        par,
     } = req.body;
     let id = req.params.id;
 
-    try {
-        // update db
-        let updatePantryById = 'UPDATE pantry SET note = $1, unit = $2, qty = $3, par = $4;';
-        let values = [newNote, newUnit, newQty, newPar];
-        await db.query(updatePantryById, values);
-        // next middleware should be pantryGet
-        return next();
-    } catch (err) {
-        console.log('Error in pantryUpdate middleware :', err);
-        return next({
-            log: 'pantryController.getPantry: ERROR: Error getting pantry data from database',
-            message: {
-                err: 'Error occurred in pantryController. Check server logs for more details.',
-            }
+    let update = `UPDATE pantry SET item_name = $1, note = $2, unit = $3, qty = $4, category = $5, par = $6 WHERE _id = $7;`;
+    let values = [item_name, note, unit, qty, category, par, id];
+
+    db.query(update, values)
+        .then(() => {
+            return next();
+        })
+        .catch((err) => {
+            return next({
+                log: 'pantryController.pantryUpdate ' + `${err}`,
+                message: {
+                    err: 'SQL query failed'
+                }
+            });
         });
-    }
 }
 
 module.exports = pantryUpdate;
