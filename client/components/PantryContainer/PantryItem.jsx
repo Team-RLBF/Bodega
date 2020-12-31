@@ -1,16 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  loadShoppingItem,
-  LOAD_SHOPPING_ITEM,
-} from "../../store/actions/shoppingActions";
+import { getPantryItems } from "../../store/actions/pantryActions";
 import UpdateButtonPantry from "./UpdateButtonPantry.jsx";
 import DeleteButtonPantry from "./DeleteButtonPantry.jsx";
 import MinusButtonPantry from "./MinusButtonPantry.jsx";
 import AddButtonPantry from "./AddButtonPantry.jsx";
 
-const PantryItem = () => {
-  const { item_name, category, list_qty, note, unit, _id } = newItem;
+const PantryItem = ({ newItem }) => {
+  const { item_name, category, qty, note, unit, _id } = newItem;
 
   return (
     <>
@@ -31,20 +28,22 @@ const PantryItem = () => {
           </div>
 
           <div className="flex flex-column justify-center items-center mt-2 ">
-            <div className="flex flex-row justify-center items-center">
-              <div className="text-3xl font-semibold text-blue-700  truncate">
-                {list_qty}
-              </div>
-              <div className="ml-3">{unit}</div>
-            </div>
+            <p className="text-3xl font-semibold text-blue-700  truncate">
+              {qty}
+            </p>
             <div className="flex flex-row">
-              <MinusButton />
-              <AddButton />
+              <MinusButtonPantry _id={_id} />
+              <AddButtonPantry _id={_id} />
             </div>
           </div>
+
+          <div className="flex flex-column justify-center items-center">
+            <p>{note}</p>
+          </div>
+
           <div className=" flex flex-column justify-center items-center mt-2 pr-5">
-            <UpdateButton />
-            <DeleteButton _id={_id} />
+            <UpdateButtonPantry />
+            <DeleteButtonPantry _id={_id} />
           </div>
         </div>
       </li>

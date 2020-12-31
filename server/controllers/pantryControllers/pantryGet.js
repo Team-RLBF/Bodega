@@ -7,7 +7,7 @@ const pantryGet = (req, res, next) => {
   // testing values
   // let values = [1];
 
-  db.query(getPantry, 1)
+  db.query(getPantry, [1])
     .then((result) => {
       res.locals.pantry = result.rows;
       // console.log(res.locals.pantry);
