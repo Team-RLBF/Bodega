@@ -1,8 +1,29 @@
 import React, { useState } from "react";
 import { SearchBar } from "./SearchBar.jsx";
+import { useDispatch } from 'react-redux';
+
+import { addShoppingItem } from '../../store/actions/shoppingActions.js'
 
 export const AddItem = () => {
   const [showModal, setShowModal] = useState(false);
+  const [itemName, setItemName] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [category, setCategory] = useState('');
+  const [notes, setNotes] = useState('');
+
+  //onClick Function (Save Changes) to sent user data
+  const dispatch = useDispatch();
+
+  const sendData = () => {
+    const dataSet = {
+      itemName,
+      quantity,
+      category,
+      notes,
+    };
+    dispatch(addShoppingItem(dataSet));
+  }
+
   return (
     <>
       <button
@@ -45,8 +66,8 @@ export const AddItem = () => {
                         <input
                           className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                           placeholder="Milk"
-                          //   value={symbol}
-                          //   onChange={(e) => setSymbol(e.target.value)}
+                          value={itemName}
+                          onChange={(e) => setItemName(e.target.value)}
                         ></input>
                       </div>
                     </div>
@@ -61,8 +82,8 @@ export const AddItem = () => {
                           type="text"
                           placeholder="0"
                           step="0.5"
-                          //   onChange={(e) => setStrike(e.target.value)}
-                          //   value={strike}
+                          value={quantity}
+                          onChange={(e) => setQuantity(e.target.value)}
                         ></input>
                       </div>
                     </div>
@@ -76,8 +97,8 @@ export const AddItem = () => {
                           name="types"
                           placeholder="Long Naked Call"
                           className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
-                          //   onChange={(e) => setType(e.target.value)}
-                          //   value={type}
+                          value={category}
+                          onChange={(e) => setCategory(e.target.value)}
                         >
                           <option>Dairy</option>
                           <option>Meat</option>
@@ -88,16 +109,16 @@ export const AddItem = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700">
-                        Quantity
+                        Notes
                       </label>
                       <div className="mt-1 relative rounded-md shadow-sm">
                         <input
                           className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                           type="text"
-                          placeholder="0"
+                          placeholder="Add Notes Here"
                           step="0.5"
-                          //   onChange={(e) => setStrike(e.target.value)}
-                          //   value={strike}
+                          value={notes}
+                          onChange={(e) => setNotes(e.target.value)}
                         ></input>
                       </div>
                     </div>
@@ -113,7 +134,7 @@ export const AddItem = () => {
                   >
                     Close
                   </button>
-                  <button
+                  <button onClick={() => sendData()}
                     className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     // style={{ transition: "all .15s ease" }}

@@ -8,7 +8,6 @@ import App from "./components/App.jsx";
 import "tailwindcss/tailwind.css";
 import "./styling/application.scss";
 import "./styling/bootstrap.min.css";
-import "./styling/Header.css";
 
 render(
   <Provider store={store}>
