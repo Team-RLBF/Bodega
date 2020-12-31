@@ -152,7 +152,7 @@ export const AddItem = () => {
 
                     {showPantry && <div>
                       <label className="block text-sm font-medium text-gray-700">
-                        Quantity
+                        Stock Amount
                       </label>
                       <div className="mt-1 relative rounded-md shadow-sm">
                         <input
