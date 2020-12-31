@@ -15,6 +15,14 @@ export const loadPantryItem = (items) => ({
   payload: items,
 });
 
+// Add Shopping Items
+export const ADD_PANTRY_ITEM = "ADD_PANTRY_ITEM";
+export const addPantryItem = (item) => (dispatch) => {
+  axios.post("/api/pantry/submit", item).then(({ data }) => {
+    dispatch(loadShoppingItem(data));
+  });
+};
+
 export const DELETE_PANTRY_ITEM = "DELETE_PANTRY_ITEM";
 export const deletePantryItem = (id) => (dispatch) => {
   console.log('inside action', id);
