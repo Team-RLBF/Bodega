@@ -24,6 +24,7 @@ export const AddItem = () => {
       note,
     };
     dispatch(addShoppingItem(dataSet));
+    setShowModal(false);
   };
 
   return (
@@ -97,7 +98,7 @@ export const AddItem = () => {
                       <div className="mt-1 relative rounded-md shadow-sm">
                         <select
                           name="types"
-                          placeholder="Long Naked Call"
+                          placeholder="Dairy"
                           className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
@@ -105,6 +106,28 @@ export const AddItem = () => {
                           <option>Dairy</option>
                           <option>Meat</option>
                           <option>Produce</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="w-full">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Unit
+                      </label>
+                      <div className="mt-1 relative rounded-md shadow-sm">
+                        <select
+                          name="types"
+                          placeholder="oz"
+                          className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
+                          value={unit}
+                          onChange={(e) => setUnit(e.target.value)}
+                        >
+                          <option>oz</option>
+                          <option>lb</option>
+                          <option>each</option>
+                          <option>gallon</option>
+                          <option>gram</option>
+                          <option>dozen</option>
                         </select>
                       </div>
                     </div>
