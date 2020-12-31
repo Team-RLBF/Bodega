@@ -6,7 +6,8 @@ const shoppingRefresh = (req, res, next) => {
 
   // add items to shopping (list_qty = par - qty, pantry_id = pantry._id)
   let qStr = `DELETE FROM shopping WHERE user_id = '1' AND list_qty <= 0 RETURNING *;`;
-  db.query(qStr)
+  return db
+    .query(qStr)
     .then((qres) => {
       console.log(
         'file: shoppingRefresh.js ~ line 11 ~ .then ~ qres.rows',
