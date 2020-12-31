@@ -26,12 +26,12 @@ export const addShoppingItem = (item) => (dispatch) => {
 
 // Delete Shopping Items
 export const DELETE_SHOPPING_ITEM = "DELETE_SHOPPING_ITEM";
-export const deleteShoppingItem = (id) => (
-  // axios.delete(`./api/shopping/delete/${id}`).then(({ data }) => {
-  //   dispatch(loadShoppingItem(data));
-  // });
-  {type: DELETE_SHOPPING_ITEM, payload: 1}
-);
+export const deleteShoppingItem = (id) => (dispatch) => {
+  console.log('inside action', id);
+  axios.delete(`./api/shopping/remove/${id}`).then(({ data }) => {
+    dispatch(loadShoppingItem(data));
+  });
+};
 
 // Update Shopping Item
 export const UPDATE_SHOPPING_ITEM = "UPDATE_SHOPPING_ITEM";

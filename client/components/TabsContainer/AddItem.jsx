@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 import { SearchBar } from "./SearchBar.jsx";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
-import { addShoppingItem } from '../../store/actions/shoppingActions.js'
+import { addShoppingItem } from "../../store/actions/shoppingActions.js";
 
 export const AddItem = () => {
   const [showModal, setShowModal] = useState(false);
-  const [itemName, setItemName] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [category, setCategory] = useState('');
-  const [notes, setNotes] = useState('');
+  const [item_name, setItemName] = useState("");
+  const [list_qty, setQuantity] = useState("");
+  const [category, setCategory] = useState("Dairy");
+  const [unit, setUnit] = useState("");
+  const [note, setNote] = useState("");
 
   //onClick Function (Save Changes) to sent user data
   const dispatch = useDispatch();
 
   const sendData = () => {
     const dataSet = {
-      itemName,
-      quantity,
+      item_name,
+      unit,
+      list_qty,
       category,
-      notes,
+      note,
     };
     dispatch(addShoppingItem(dataSet));
-  }
+  };
 
   return (
     <>
@@ -66,7 +68,7 @@ export const AddItem = () => {
                         <input
                           className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                           placeholder="Milk"
-                          value={itemName}
+                          value={item_name}
                           onChange={(e) => setItemName(e.target.value)}
                         ></input>
                       </div>
@@ -82,7 +84,7 @@ export const AddItem = () => {
                           type="text"
                           placeholder="0"
                           step="0.5"
-                          value={quantity}
+                          value={list_qty}
                           onChange={(e) => setQuantity(e.target.value)}
                         ></input>
                       </div>
@@ -117,8 +119,8 @@ export const AddItem = () => {
                           type="text"
                           placeholder="Add Notes Here"
                           step="0.5"
-                          value={notes}
-                          onChange={(e) => setNotes(e.target.value)}
+                          value={note}
+                          onChange={(e) => setNote(e.target.value)}
                         ></input>
                       </div>
                     </div>
@@ -134,7 +136,8 @@ export const AddItem = () => {
                   >
                     Close
                   </button>
-                  <button onClick={() => sendData()}
+                  <button
+                    onClick={() => sendData()}
                     className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     // style={{ transition: "all .15s ease" }}

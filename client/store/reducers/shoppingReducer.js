@@ -1,12 +1,5 @@
 import { LOAD_SHOPPING_ITEM, DELETE_SHOPPING_ITEM, UPDATE_SHOPPING_ITEM, ADD_QTY, MINUS_QTY } from "../actions/shoppingActions.js";
 
-// const initialState = {
-//   shoppingList: [{ itemName: "Milk", category: "Dairy", qty: 3 }],
-//   pantryList: [],
-//   editedShoppingItem: {},
-//   editedPantryItem: {},
-// };
-
 const shoppingReducer = (state = { shoppingList: [] }, action) => {
   switch (action.type) {
     case LOAD_SHOPPING_ITEM: {
@@ -18,17 +11,17 @@ const shoppingReducer = (state = { shoppingList: [] }, action) => {
       // console.log(newShoppingList);
       return newShoppingList;
     }
-    case DELETE_SHOPPING_ITEM:
-      shoppingList = state.shoppingList.slice();
-      // console.log(shoppingList)
-      let itemToRemove = shoppingList.find(p => p.id === action.payload);
-      let indexToRemove = shoppingList.indexOf(itemToRemove);
-      shoppingList.splice(indexToRemove, 1);
-      // console.log(shoppingList)
-      const newShoppingList = {
-        ...state,
-        shoppingList
-      };
+    // case DELETE_SHOPPING_ITEM:
+    //   shoppingList = state.shoppingList.slice();
+    //   // console.log(shoppingList)
+    //   let itemToRemove = shoppingList.find(p => p.id === action.payload);
+    //   let indexToRemove = shoppingList.indexOf(itemToRemove);
+    //   shoppingList.splice(indexToRemove, 1);
+    //   // console.log(shoppingList)
+    //   const newShoppingList = {
+    //     ...state,
+    //     shoppingList
+    //   };
 
       return newShoppingList;
     //working; pulling in action payload correctly
@@ -43,11 +36,11 @@ const shoppingReducer = (state = { shoppingList: [] }, action) => {
     case ADD_QTY:
       shoppingList = state.shoppingList.slice();
       id = action.payload;
-      console.log(id);
+      // console.log(id);
       let indexToChange = shoppingList.indexOf(shoppingList.find(p => p.id === id))
-      console.log(shoppingList[indexToChange].qty)
+      // console.log(shoppingList[indexToChange].qty)
       shoppingList[indexToChange].qty += 1;
-      console.log(shoppingList)
+      // console.log(shoppingList)
       return {
         ...state,
         shoppingList

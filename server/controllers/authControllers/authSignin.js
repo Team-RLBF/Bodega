@@ -1,5 +1,5 @@
-const db = require('../../db.js');
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
+const db = require("../../db.js");
 
 const authSignin = (req, res, next) => {
   // write code here
@@ -7,7 +7,7 @@ const authSignin = (req, res, next) => {
   const qStr = `SELECT * FROM auth WHERE user_name = ${req.body.username};`;
   db.query(qStr).then((qres) => {
     const user = qres.rows[0] ? qres.rows[0] : false;
-    if (!user) res.redirect('/signup');
+    if (!user) res.redirect("/signup");
     bcrypt
       .compare(req.body.password, user.passkey)
       .then((result) => {
@@ -15,19 +15,19 @@ const authSignin = (req, res, next) => {
           res.locals.username = req.body.username;
           return next();
         }
-        return res.redirect('/signin');
+        return res.redirect("/signin");
       })
       .catch(() =>
         next({
-          log: 'authController.authSignin error',
-          message: { err: 'bcrypt failed' },
-        }),
+          log: "authController.authSignin error",
+          message: { err: "bcrypt failed" },
+        })
       )
       .catch(() =>
         next({
-          log: 'authController.authSignin error',
-          message: { err: 'SQL query failed' },
-        }),
+          log: "authController.authSignin error",
+          message: { err: "SQL query failed" },
+        })
       );
   });
 };
