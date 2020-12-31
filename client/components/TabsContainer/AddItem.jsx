@@ -6,6 +6,10 @@ import {
   addShoppingItem,
   updateShoppingItem,
 } from "../../store/actions/shoppingActions.js";
+import {
+  addPantryItem,
+  updatePantryItem,
+} from "../../store/actions/pantryActions.js";
 import { displayEditor } from "../../store/actions/uiActions.js";
 
 export const AddItem = () => {
@@ -15,12 +19,13 @@ export const AddItem = () => {
   const [category, setCategory] = useState("Dairy");
   const [unit, setUnit] = useState("");
   const [note, setNote] = useState("");
+  const [par, setPar] = useState("")
 
   //onClick Function (Save Changes) to sent user data
   const dispatch = useDispatch();
 
   const updatedItem = useSelector((state) => state.shopping.updatedItem);
-  const { displayModal, isEdit } = useSelector((state) => state.ui);
+  const { displayModal, isEdit, displayShopping, displayPantry } = useSelector((state) => state.ui);
 
 
   const showModal = () => {
@@ -37,15 +42,18 @@ export const AddItem = () => {
       list_qty,
       category,
       note,
+      qty:list_qty,
+      par
     };
-    dispatch(addShoppingItem(dataSet));
+    if(displayShopping) dispatch(addShoppingItem(dataSet))
+    if(displayPantry) dispatch(addPantryItem(dataSet))  
     hideModal();
   };
-
+  console.log(displayPantry, "dipslay panatryal")
   useEffect(() => {
     ifEditTrue();
   }, [isEdit]);
-
+  
   const ifEditTrue = () => {
     let item_name = "";
     let unit = "";
@@ -142,6 +150,23 @@ export const AddItem = () => {
                       </div>
                     </div>
 
+                    {displayPantry && 
+                    <div>
+                      
+                      <label className="block text-sm font-medium text-gray-700">
+                        Stock Amount
+                      </label>
+                      <div className="mt-1 relative rounded-md shadow-sm">
+                        <input
+                          className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
+                          type="text"
+                          placeholder={par}
+                          value={par}
+                          onChange={(e) => setPar(e.target.value)}
+                        ></input>
+                      </div>
+                    </div>
+                    }
                     <div className="w-full">
                       <label className="block text-sm font-medium text-gray-700">
                         Unit

@@ -1,7 +1,7 @@
-const db = require('../../db.js');
+const db = require("../../db.js");
 
 const shoppingRefresh = (req, res, next) => {
-  console.log('in shoppingRefresh');
+  console.log("in shoppingRefresh");
   // remove items from shopping where (list_qty <= 0)
 
   // add items to shopping (list_qty = par - qty, pantry_id = pantry._id)
@@ -10,8 +10,8 @@ const shoppingRefresh = (req, res, next) => {
     .query(qStr)
     .then((qres) => {
       console.log(
-        'file: shoppingRefresh.js ~ line 11 ~ .then ~ qres.rows',
-        qres.rows,
+        "file: shoppingRefresh.js ~ line 11 ~ .then ~ qres.rows",
+        qres.rows
       );
       // find items in pantry that are low on stock where (par > qty)
       qStr = `SELECT * FROM pantry WHERE user_id = '1' AND par > qty;`;
@@ -20,14 +20,14 @@ const shoppingRefresh = (req, res, next) => {
     .then((qres) => {
       const importList = qres.rows;
       console.log(
-        'file: shoppingRefresh.js ~ line 16 ~ .then ~ importList',
-        importList,
+        "file: shoppingRefresh.js ~ line 16 ~ .then ~ importList",
+        importList
       );
       console.log(importList.length > 0);
       importList.forEach((newItem) => {
         console.log(
-          'file: shoppingRefresh.js ~ line 25 ~ importList.map ~ newItem',
-          newItem,
+          "file: shoppingRefresh.js ~ line 25 ~ importList.map ~ newItem",
+          newItem
         );
         // find out if item from pantry is already in shopping
 
@@ -38,8 +38,8 @@ const shoppingRefresh = (req, res, next) => {
           })
           .then((pantryItem) => {
             console.log(
-              'Currently working Line 39 in refresh on: \n',
-              pantryItem,
+              "Currently working Line 39 in refresh on: \n",
+              pantryItem
             );
             // if cooresponding shopping item does not exist, create one.
             if (!pantryItem) {
@@ -54,7 +54,7 @@ const shoppingRefresh = (req, res, next) => {
               const qStr = `UPDATE shopping 
                 SET list_qty = ${Math.max(
                   pantryItem.list_qty,
-                  newItem.par - newItem.qty,
+                  newItem.par - newItem.qty
                 )} 
                 WHERE pantry_id = ${newItem._id};`;
               return db.query(qStr);
@@ -67,8 +67,8 @@ const shoppingRefresh = (req, res, next) => {
     })
     .catch(() => {
       return next({
-        log: 'shoppingController.shoppingRefresh error',
-        message: { err: 'SQL query failed' },
+        log: "shoppingController.shoppingRefresh error",
+        message: { err: "SQL query failed" },
       });
     });
 };
