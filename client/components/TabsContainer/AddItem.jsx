@@ -19,7 +19,7 @@ export const AddItem = () => {
   const [category, setCategory] = useState("Dairy");
   const [unit, setUnit] = useState("");
   const [note, setNote] = useState("");
-  const [par, setPar] = useStare("")
+  const [par, setPar] = useState("")
 
   //onClick Function (Save Changes) to sent user data
   const dispatch = useDispatch();
@@ -150,7 +150,9 @@ export const AddItem = () => {
                       </div>
                     </div>
 
-                    {showPantry && <div>
+                    {displayPantry && 
+                    <div>
+                      
                       <label className="block text-sm font-medium text-gray-700">
                         Stock Amount
                       </label>
