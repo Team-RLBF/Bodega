@@ -1,23 +1,27 @@
-import { LOAD_SHOPPING_ITEM } from "../actions/shoppingActions.js";
+import { LOAD_SHOPPING_ITEM, LOAD_EDITED_ITEM, ADD_QTY, MINUS_QTY } from "../actions/shoppingActions.js";
 
-const initialState = {
-  shoppingList: [{ itemName: "Milk", category: "Dairy", qty: 3 }],
-  pantryList: [],
-  editedShoppingItem: {},
-  editedPantryItem: {},
-};
-
-const shoppingReducer = (state = initialState, action) => {
+const shoppingReducer = (state = { shoppingList: [], updatedItem:{} }, action) => {
+ 
   switch (action.type) {
     case LOAD_SHOPPING_ITEM: {
-      console.log(action.payload);
+      // console.log(action.payload);
       const newShoppingList = {
         ...state,
         shoppingList: [...action.payload],
       };
-      console.log(newShoppingList);
+      // console.log(newShoppingList);
       return newShoppingList;
     }
+   
+    case LOAD_EDITED_ITEM:{
+      const itemToBeUpdated = {
+        ...state,
+        updatedItem: action.payload,
+      }    
+
+      return itemToBeUpdated
+    }
+
     default:
       return state;
   }
