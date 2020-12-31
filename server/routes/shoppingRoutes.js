@@ -39,6 +39,7 @@ shopping.post(
   '/checkout',
   // authController.authCheckCookie,
   shoppingController.checkout,
+  shoppingController.refresh,
   shoppingController.load,
   (req, res) => res.status(200).json(res.locals.shopping),
 );

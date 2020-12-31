@@ -6,7 +6,11 @@ const shoppingBuyDown = (req, res, next) => {
   SET buy_qty = buy_qty - 1 
   WHERE _id = ${item_id};`;
   db.query(qStr)
-    .then(() => {
+    .then((qres) => {
+      console.log(
+        'file: shoppingBuyDown.js ~ line 11 ~ .then ~ qres.rows[0]',
+        qres.rows[0],
+      );
       return next();
     })
     .catch(() =>
