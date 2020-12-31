@@ -15,15 +15,26 @@ const shoppingAddFromPantry = (req, res, next) => {
         const qStr = `INSERT INTO shopping (user_id, pantry_id, item_name, note, unit, list_qty, buy_qty, category) 
   SELECT user_id, _id, item_name, note, unit, '1', '0', category
   FROM pantry
-  WHERE _id = ${item_id};`;
-        db.query(qStr);
+  WHERE _id = ${item_id} RETURNING *;`;
+        db.query(qStr).then((qres) => {
+          console.log(
+            'file: shoppingAddFromPantry.js ~ line 21 ~ .then ~ qres.rows[0]',
+            qres.rows[0],
+          );
+          return next();
+        });
       } else {
         const qStr = `UPDATE shopping 
     SET list_qty = '${pantryItem.list_qty + 1}' 
     WHERE pantry_id = ${item_id};`;
-        db.query(qStr);
+        db.query(qStr).then((qres) => {
+          console.log(
+            'file: shoppingAddFromPantry.js ~ line 31 ~ .then ~ qres.rows[0]',
+            qres.rows[0],
+          );
+          return next();
+        });
       }
-      return next();
     })
     .catch(() =>
       next({
