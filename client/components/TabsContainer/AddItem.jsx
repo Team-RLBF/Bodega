@@ -6,6 +6,10 @@ import {
   addShoppingItem,
   updateShoppingItem,
 } from "../../store/actions/shoppingActions.js";
+import {
+  addPantryItem,
+  updatePantryItem,
+} from "../../store/actions/pantryActions.js";
 import { displayEditor } from "../../store/actions/uiActions.js";
 
 export const AddItem = () => {
@@ -20,7 +24,7 @@ export const AddItem = () => {
   const dispatch = useDispatch();
 
   const updatedItem = useSelector((state) => state.shopping.updatedItem);
-  const { displayModal, isEdit } = useSelector((state) => state.ui);
+  const { displayModal, isEdit, displayShopping, displayPantry } = useSelector((state) => state.ui);
 
 
   const showModal = () => {
@@ -37,15 +41,18 @@ export const AddItem = () => {
       list_qty,
       category,
       note,
+      qty,
+      par
     };
-    dispatch(addShoppingItem(dataSet));
+    if(displayShopping) dispatch(addShoppingItem(dataSet))
+    if(displayPantry) dispatch(addPantryItem(dataSet))  
     hideModal();
   };
-
+  console.log(displayPantry, "dipslay panatryal")
   useEffect(() => {
     ifEditTrue();
   }, [isEdit]);
-
+  
   const ifEditTrue = () => {
     let item_name = "";
     let unit = "";
