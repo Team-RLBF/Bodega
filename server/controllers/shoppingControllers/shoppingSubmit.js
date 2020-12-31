@@ -1,12 +1,13 @@
 const db = require('../../db.js');
 
 const shoppingSubmit = (req, res, next) => {
-  const newItem = req.body.newItem;
+  console.log('in shoppingSubmit');
+  const newItem = req.body;
   console.log(
     'file: shoppingSubmit.js ~ line 5 ~ shoppingSubmit ~ newItem',
     newItem,
   );
-  const qStr = `INSERT INTO shopping (user_id, item_name, note, unit, list_qty, category) VALUES (${res.locals.userId}, ${newItem.item_name}, ${newItem.note}, ${newItem.unit}, ${newItem.list_qty}, ${newItem.category})
+  const qStr = `INSERT INTO shopping (user_id, item_name, note, unit, list_qty, buy_qty, category) VALUES ('1', '${newItem.item_name}', '${newItem.note}', '${newItem.unit}', '${newItem.list_qty}', '0','${newItem.category}')
   RETURNING *;`;
   db.query(qStr)
     .then((qres) => {
@@ -17,12 +18,13 @@ const shoppingSubmit = (req, res, next) => {
       );
       return next();
     })
-    .catch(() =>
-      next({
+    .catch((err) => {
+      console.log(err);
+      return next({
         log: 'shoppingController.shoppingSubmit error',
         message: { err: 'SQL query failed' },
-      }),
-    );
+      });
+    });
 };
 
 module.exports = shoppingSubmit;

@@ -1,7 +1,7 @@
 const db = require('../../db.js');
 
 const shoppingGet = (req, res, next) => {
-  const qStr = `SELECT * FROM shopping WHERE user_id = ${res.locals.userId};`;
+  const qStr = `SELECT * FROM shopping WHERE user_id = '1';`;
   db.query(qStr)
     .then((qres) => {
       res.locals.shopping = qres.rows;
