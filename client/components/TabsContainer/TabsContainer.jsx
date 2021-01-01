@@ -15,7 +15,7 @@ export const TabsContainer = () => {
 
   return (
     <div>
-      <div className="flex flex-row m-2 px-5 justify-between bg-gray-200 ">
+      <div className="flex flex-row m-4 px-5 justify-between items-baseline bg-gray-200 ">
         <AddItem />
         <SearchBar />
         <div>

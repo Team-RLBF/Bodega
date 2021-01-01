@@ -80,9 +80,17 @@ export const minusBuyQty = (id) => (dispatch) => {
   });
 };
 
-export const CHECKOUT_BTN = 'CHECKOUT_BTN';
+export const CHECKOUT_BTN = "CHECKOUT_BTN";
 export const checkoutBtn = () => (dispatch) => {
-  axios.post('/api/shopping/checkout').then(({ data }) => {
+  axios.post("/api/shopping/checkout").then(({ data }) => {
     dispatch(loadShoppingItem(data));
   });
-}
+};
+
+export const ADD_FROM_PANTRY = "ADD_FROM_PANTRY";
+export const addFromPantry = (id) => (dispatch) => {
+  console.log(id, "pantry id thing");
+  axios.post(`/api/shopping/addFromPantry/${id}`).then(({ data }) => {
+    dispatch(loadShoppingItem(data));
+  });
+};

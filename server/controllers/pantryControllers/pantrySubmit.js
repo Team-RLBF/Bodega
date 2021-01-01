@@ -1,37 +1,28 @@
-const db = require('../../db.js');
+const db = require("../../db.js");
 
 const pantrySubmit = (req, res, next) => {
-    // console.log(req.body);
+  // console.log(req.body);
 
-    let {
-        item_name,
-        note,
-        unit,
-        qty,
-        category,
-        par
-    } = req.body;
-    let userId = res.locals.userId;
+  const { item_name, note, unit, qty, category, par } = req.body;
+  //   let userId = res.locals.userId;
 
-    // for testing
-    // let userId = 1;
+  // for testing
+  const userId = 1;
 
-    let insert = `INSERT INTO pantry (user_id, item_name, note, unit, qty, category, par) VALUES ($1, $2, $3,
+  const insert = `INSERT INTO pantry (user_id, item_name, note, unit, qty, category, par) VALUES ($1, $2, $3,
         $4, $5, $6, $7);`;
-    let values = [userId, item_name, note, unit, qty, category, par];
+  const values = [userId, item_name, note, unit, qty, category, par];
 
-    db.query(insert, values)
-        .then(() => {
-            return next();
-        })
-        .catch((err) => {
-            return next({
-                log: 'pantryController.pantrySubmit ' + `${err}`,
-                message: {
-                    err: 'SQL query failed'
-                }
-            });
-        })
-}
+  db.query(insert, values)
+    .then(() => next())
+    .catch((err) =>
+      next({
+        log: "pantryController.pantrySubmit " + `${err}`,
+        message: {
+          err: "SQL query failed",
+        },
+      })
+    );
+};
 
 module.exports = pantrySubmit;
