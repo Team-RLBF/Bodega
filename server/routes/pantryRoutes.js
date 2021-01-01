@@ -61,6 +61,31 @@ pantry.put(
     }
 );
 
+
+// input: item id
+// output: return entire pantry table as JSON
+pantry.put(
+    '/parup/:id',
+    // authController.authCheckCookie,
+    pantryController.pantryParUp,
+    pantryController.pantryGet,
+    (req, res) => {
+        return res.status(200).json(res.locals.pantry);
+    }
+);
+
+// input: item id
+// output: return entire pantry table as JSON
+pantry.put(
+    '/pardown/:id',
+    // authController.authCheckCookie,
+    pantryController.pantryParDown,
+    pantryController.pantryGet,
+    (req, res) => {
+        return res.status(200).json(res.locals.pantry);
+    }
+);
+
 // input: item id
 // output: return entire pantry table as JSON
 pantry.delete(
