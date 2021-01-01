@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch } from 'react-redux';
-import { deletePantryItem } from  "../../store/actions/pantryActions";
+import { useDispatch } from "react-redux";
+import { deletePantryItem } from "../../store/actions/pantryActions";
 
 const DeleteButtonPantry = ({ _id }) => {
   const dispatch = useDispatch();
