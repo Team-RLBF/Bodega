@@ -11,6 +11,7 @@ const pantryUpdate = (req, res, next) => {
         par,
     } = req.body;
     let id = req.params.id;
+    if (qty === 'null') qty = 0;
 
     let update = `UPDATE pantry SET item_name = $1, note = $2, unit = $3, qty = $4, category = $5, par = $6 WHERE _id = $7;`;
     let values = [item_name, note, unit, qty, category, par, id];
