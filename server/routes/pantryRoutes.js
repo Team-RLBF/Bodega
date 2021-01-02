@@ -1,4 +1,5 @@
 const express = require("express");
+
 const pantry = express.Router();
 const pantryController = require("../controllers/pantryControllers/pantryController.js");
 const authController = require("../controllers/authControllers/authController");
@@ -9,9 +10,7 @@ pantry.get(
   "/",
   // authController.authCheckCookie,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 // input: JSON from the front end
@@ -22,22 +21,18 @@ pantry.post(
   // authController.authCheckCookie,
   pantryController.pantrySubmit,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 // input: JSON from front end, with an id parameter
 // function: update the ispecified by the id param
 // output: return updated pantry table as JSON
-pantry.put(
+pantry.post(
   "/update/:id",
   // authController.authCheckCookie,
   pantryController.pantryUpdate,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 // input: item id parameter
@@ -48,9 +43,7 @@ pantry.put(
   // authController.authCheckCookie,
   pantryController.pantryItemUp,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 // input: item id parameter
@@ -61,9 +54,7 @@ pantry.put(
   // authController.authCheckCookie,
   pantryController.pantryItemDown,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 // input: item id parameter
@@ -74,9 +65,7 @@ pantry.put(
   // authController.authCheckCookie,
   pantryController.pantryParUp,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 // input: item id parameter
@@ -87,9 +76,7 @@ pantry.put(
   // authController.authCheckCookie,
   pantryController.pantryParDown,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 // input: item id parameter
@@ -100,9 +87,7 @@ pantry.delete(
   // authController.authCheckCookie,
   pantryController.pantryDelete,
   pantryController.pantryGet,
-  (req, res) => {
-    return res.status(200).json(res.locals.pantry);
-  }
+  (req, res) => res.status(200).json(res.locals.pantry)
 );
 
 module.exports = pantry;
