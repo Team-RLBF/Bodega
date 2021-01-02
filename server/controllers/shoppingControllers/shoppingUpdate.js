@@ -1,5 +1,7 @@
 const db = require('../../db.js');
 
+// Update a shopping item with new data;
+
 const shoppingUpdate = (req, res, next) => {
   const item_id = req.params.id;
   const item = req.body;

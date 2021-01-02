@@ -1,5 +1,7 @@
 const db = require('../../db.js');
 
+// Increase the buy_qty of a shopping list item by 1
+
 const shoppingBuyUp = (req, res, next) => {
   const item_id = req.params.id;
   res.locals.userId = 1;
@@ -8,10 +10,6 @@ const shoppingBuyUp = (req, res, next) => {
   WHERE _id = ${item_id};`;
   db.query(qStr)
     .then((qres) => {
-      console.log(
-        'file: shoppingBuyUp.js ~ line 11 ~ .then ~ qres.rows[0]',
-        qres.rows[0],
-      );
       return next();
     })
     .catch(() =>
