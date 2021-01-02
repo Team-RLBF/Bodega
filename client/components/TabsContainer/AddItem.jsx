@@ -63,7 +63,7 @@ export const AddItem = () => {
     let category = "";
     let note = "";
     let par = "";
-    let qty = ""
+    let qty = "";
     if (isEdit) {
       category = updatedItem.category;
       item_name = updatedItem.item_name;
@@ -97,7 +97,7 @@ export const AddItem = () => {
     hideModal();
   };
 
-  console.log(pantryQty,'pan qty')
+  console.log(pantryQty, "pan qty");
   return (
     <>
       <button
@@ -215,11 +215,17 @@ export const AddItem = () => {
                           onChange={(e) => setCategory(e.target.value)}
                         >
                           <option>Dry Goods</option>
+                          <option>Canned Goods</option>
+                          <option>Fridge</option>
                           <option>Frozen</option>
                           <option>Dairy</option>
+                          <option>Bakery</option>
+                          <option>Deli</option>
                           <option>Meat</option>
                           <option>Produce</option>
+                          <option>Alcohol</option>
                           <option>Household Supplies</option>
+                          <option>Clothes</option>
                           <option>Misc.</option>
                         </select>
                       </div>

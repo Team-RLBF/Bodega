@@ -12,7 +12,7 @@ const ShoppingContainer = () => {
     dispatch(getShoppingItems());
   }, []);
 
-  //Callback function used in component render to sort all shopping items alphabetically
+  //Callback used in component render to sort all shopping items alphabetically
   const sortItem = (a, b) => {
     if (a.item_name < b.item_name) {
       return -1;
@@ -38,5 +38,6 @@ const ShoppingContainer = () => {
     </div>
   );
 };
+
 
 export default ShoppingContainer;

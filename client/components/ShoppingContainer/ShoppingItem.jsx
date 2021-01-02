@@ -12,6 +12,7 @@ import AddBuyButton from "./AddBuyButton.jsx";
 //Pulls in newItem from container as prop(destructured as param)
 const ShoppingItem = ({ newItem }) => {
   const { displayShopping } = useSelector((state) => state.ui);
+
   const {
     item_name,
     category,
@@ -23,7 +24,7 @@ const ShoppingItem = ({ newItem }) => {
     pantry_par,
     pantry_qty,
   } = newItem;
-  console.log("display shlsdf", displayShopping);
+
   return (
     <>
       <li>
@@ -86,5 +87,6 @@ const ShoppingItem = ({ newItem }) => {
     </>
   );
 };
+
 
 export default ShoppingItem;

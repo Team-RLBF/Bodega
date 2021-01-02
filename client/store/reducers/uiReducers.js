@@ -1,5 +1,6 @@
 import { TOGGLE_TABS, DISPLAY_EDITOR } from "../actions/uiActions.js";
 
+//Initial state for UI
 const initialState = {
   displayShopping: true,
   displayPantry: false,
@@ -9,6 +10,7 @@ const initialState = {
 
 const uiReducer = (state = initialState, action) => {
   switch (action.type) {
+    //Toggles between shopping and pantry lists
     case TOGGLE_TABS: {
       console.log(action.payload);
       return {
@@ -17,6 +19,7 @@ const uiReducer = (state = initialState, action) => {
         displayPantry: action.payload.displayPantry,
       };
     }
+    //Displays modals
     case DISPLAY_EDITOR: {
       return {
         ...state,
@@ -24,7 +27,7 @@ const uiReducer = (state = initialState, action) => {
         isEdit: action.payload.isEdit,
       };
     }
-
+    //Default, returns state
     default:
       return state;
   }
