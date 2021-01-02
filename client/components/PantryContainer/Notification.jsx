@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
+//Fires off upon successful adding of item to shopping list from pantry
 const Notification = ({ showAlert }) => {
   const dispatch = useDispatch();
   const hideAlert = () => showAlert(false);

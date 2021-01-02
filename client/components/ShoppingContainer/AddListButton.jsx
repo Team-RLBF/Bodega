@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addListQty } from "../../store/actions/shoppingActions";
 
+//Increments List Quantity
 const AddListButton = ({ _id }) => {
   const dispatch = useDispatch();
   

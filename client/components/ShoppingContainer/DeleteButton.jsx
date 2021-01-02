@@ -6,6 +6,7 @@ import {
 } from "../../store/actions/shoppingActions";
 import { useDispatch } from 'react-redux';
 
+//Deletes single item from shopping list
 const DeleteButton = ({ _id }) => {
   const dispatch = useDispatch();
 

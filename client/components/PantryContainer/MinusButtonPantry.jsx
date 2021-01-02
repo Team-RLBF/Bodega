@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from 'react-redux';
 import { minusQty } from "../../store/actions/pantryActions";
 
+//Decrements In Stock Qty in pantry
 const MinusButtonPantry = ({ _id }) => {
   const dispatch = useDispatch();
 

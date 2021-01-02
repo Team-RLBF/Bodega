@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addFromPantry } from "../../store/actions/shoppingActions";
 
+//Adds pantry item to shopping list with proper 
 const AddFromPantryBtn = ({ _id, showAlert }) => {
   const dispatch = useDispatch();
   const addToList = () => {

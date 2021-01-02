@@ -1,3 +1,5 @@
+// individual middlewares are modularized in their own files
+// pantryController combines all the middlewares into a single ojbect
 const pantryGet = require('./pantryGet');
 const pantrySubmit = require('./pantrySubmit');
 const pantryUpdate = require('./pantryUpdate');

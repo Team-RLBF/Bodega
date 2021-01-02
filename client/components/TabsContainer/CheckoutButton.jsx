@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { checkoutBtn } from "../../store/actions/shoppingActions.js";
 import axios from "axios";
 
+//Checkout button for shopping list
+//Sends POST to /api/shopping/checkout
 const CheckoutButton = () => {
   const dispatch = useDispatch();
   const checkOut = () => {

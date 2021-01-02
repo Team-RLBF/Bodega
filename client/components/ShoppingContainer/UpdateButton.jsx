@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import {  loadEditedItem} from "../../store/actions/shoppingActions";
 import { displayEditor } from "../../store/actions/uiActions.js";
 
+//Update button for shopping list item
 const UpdateButton = ({item}) => {
   const dispatch = useDispatch();
   const {_id} = item

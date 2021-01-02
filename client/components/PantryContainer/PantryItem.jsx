@@ -10,6 +10,8 @@ import AddParPantry from './AddParPantry.jsx';
 import MinusParPantry from './MinusParPantry.jsx';
 import Notification from "./Notification.jsx";
 
+//Individual Pantry item component
+//Pulls in newItem as prop from container
 const PantryItem = ({ newItem }) => {
   const { item_name, category, qty, note, unit, _id, par } = newItem;
 
@@ -58,7 +60,7 @@ const PantryItem = ({ newItem }) => {
           </div>
 
           <div className=" flex flex-column justify-center items-center mt-2 pr-5">
-            <UpdateButtonPantry />
+            <UpdateButtonPantry item={newItem} />
             <DeleteButtonPantry _id={_id} />
           </div>
         </div>

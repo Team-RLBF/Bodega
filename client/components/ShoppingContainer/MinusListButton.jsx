@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { minusListQty } from "../../store/actions/shoppingActions";
 
+//Decrements list QTY
 const MinusListButton = ({ _id }) => {
   const dispatch = useDispatch();
 

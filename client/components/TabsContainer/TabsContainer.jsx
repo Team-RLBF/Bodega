@@ -6,6 +6,7 @@ import CheckoutButton from "./CheckoutButton.jsx";
 import { useDispatch } from "react-redux";
 import { getShoppingItems } from "../../store/actions/shoppingActions.js";
 
+//Container for search bar, Add Item and Checkout Buttons, and tabs
 export const TabsContainer = () => {
   const dispatch = useDispatch();
 

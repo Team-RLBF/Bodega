@@ -1,5 +1,6 @@
 const db = require("../../db.js");
 
+// addes a new item into the pantry table
 const pantrySubmit = (req, res, next) => {
   // console.log(req.body);
   let { item_name, note, unit, qty, category, par } = req.body;
@@ -7,6 +8,7 @@ const pantrySubmit = (req, res, next) => {
   if (qty === "null") qty = 0;
 
   // for testing
+  // hardcoded user id to be 1
   const userId = 1;
 
   const insert = `INSERT INTO pantry (user_id, item_name, note, unit, qty, category, par) VALUES ($1, $2, $3,
