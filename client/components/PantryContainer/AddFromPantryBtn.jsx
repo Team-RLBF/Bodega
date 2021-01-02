@@ -25,4 +25,5 @@ const AddFromPantryBtn = ({ _id, showAlert }) => {
   );
 };
 
+
 export default AddFromPantryBtn;

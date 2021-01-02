@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getShoppingItems } from "../../store/actions/shoppingActions";
+import React from "react";
+import { useSelector } from "react-redux";
 import UpdateButton from "./UpdateButton.jsx";
 import DeleteButton from "./DeleteButton.jsx";
 import MinusListButton from "./MinusListButton.jsx";

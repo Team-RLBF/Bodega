@@ -1,4 +1,4 @@
-import { LOAD_SHOPPING_ITEM, LOAD_EDITED_ITEM, ADD_QTY, MINUS_QTY } from "../actions/shoppingActions.js";
+import { LOAD_SHOPPING_ITEM, LOAD_EDITED_ITEM } from "../actions/shoppingActions.js";
 
 //Shopping list reducer
 const shoppingReducer = (state = { shoppingList: [], updatedItem:{} }, action) => {
@@ -11,7 +11,7 @@ const shoppingReducer = (state = { shoppingList: [], updatedItem:{} }, action) =
       };
       return newShoppingList;
     }
-    //Case to load edited item
+    //Case to load edited item this is used for both Shopping and Pantry list!!!!!
     case LOAD_EDITED_ITEM:{
       const itemToBeUpdated = {
         ...state,

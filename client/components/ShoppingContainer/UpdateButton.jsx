@@ -16,6 +16,7 @@ const UpdateButton = ({item}) => {
     dispatch(loadEditedItem(item));
     showModal();
   };
+  
   return (
     <>
       <button

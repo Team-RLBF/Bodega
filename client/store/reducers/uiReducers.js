@@ -12,7 +12,6 @@ const uiReducer = (state = initialState, action) => {
   switch (action.type) {
     //Toggles between shopping and pantry lists
     case TOGGLE_TABS: {
-      console.log(action.payload);
       return {
         ...state,
         displayShopping: action.payload.displayShopping,
