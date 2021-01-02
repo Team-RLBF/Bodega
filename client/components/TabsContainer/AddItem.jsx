@@ -11,7 +11,6 @@ import {
 } from "../../store/actions/pantryActions.js";
 import { displayEditor } from "../../store/actions/uiActions.js";
 
-
 export const AddItem = () => {
   //setting component state
   const [item_name, setItemName] = useState("");
@@ -43,7 +42,7 @@ export const AddItem = () => {
     dispatch(displayEditor(false, false));
   };
 
-  //function that dispatches the post request to either the shopping or pantry database, based on the tab the user is clicked on. 
+  //function that dispatches the post request to either the shopping or pantry database, based on the tab the user is clicked on.
   //'qty' is specific to the pantry, but the input for either list is 'list_qty' so 'qty' is set using the 'list_qty' value.
   const sendNewItem = () => {
     const dataSet = {
@@ -55,8 +54,12 @@ export const AddItem = () => {
       qty: list_qty,
       par,
     };
-    if (displayShopping) dispatch(addShoppingItem(dataSet)); //if the user is clicked on the shopping list tab, send to shopping list DB
-    if (displayPantry) dispatch(addPantryItem(dataSet)); //if the user is clicked on the pantry list tab, send to shopping list DB
+    if (displayShopping) {
+      dispatch(addShoppingItem(dataSet));
+    } //if the user is clicked on the shopping list tab, send to shopping list DB
+    else if (displayPantry) {
+      dispatch(addPantryItem(dataSet));
+    } //if the user is clicked on the pantry list tab, send to shopping list DB
     hideModal();
   };
 
@@ -94,8 +97,8 @@ export const AddItem = () => {
     setPantryQty(qty);
   };
 
-  //function that dispatches the post request to either the shopping or pantry database to update the item, based on the tab the user is clicked on. 
-  
+  //function that dispatches the post request to either the shopping or pantry database to update the item, based on the tab the user is clicked on.
+
   const sendEdit = () => {
     let editItem = {
       ...updatedItem,
@@ -109,7 +112,7 @@ export const AddItem = () => {
     };
     if (displayShopping) dispatch(updateShoppingItem(editItem)); //if the user is clicked on the shopping list tab, send to shopping list DB
     if (displayPantry) dispatch(updatePantryItem(editItem)); //if the user is clicked on the pantry list tab, send to shopping list DB
-    hideModal();//hide modal after user saves changes
+    hideModal(); //hide modal after user saves changes
   };
 
   return (
@@ -124,9 +127,7 @@ export const AddItem = () => {
       </button>
       {displayModal ? (
         <>
-          <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-          >
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -171,7 +172,6 @@ export const AddItem = () => {
                           type="text"
                           placeholder={displayShopping ? list_qty : pantryQty} //shows the correct quantity based on whether the user in in the shopping tab or pantry tab
                           value={displayShopping ? list_qty : pantryQty}
-                          
                           onChange={(e) =>
                             displayShopping
                               ? setQuantity(e.target.value)
@@ -279,7 +279,7 @@ export const AddItem = () => {
                     Close
                   </button>
                   <button
-                    onClick={isEdit ? sendEdit : sendNewItem}//if the user clicks on the update button, is Edit will be true and will call the edit function, if false (user clicks on Add item button) calls the send new item function
+                    onClick={isEdit ? sendEdit : sendNewItem} //if the user clicks on the update button, is Edit will be true and will call the edit function, if false (user clicks on Add item button) calls the send new item function
                     className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                   >
