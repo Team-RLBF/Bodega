@@ -8,7 +8,6 @@ import PantryContainer from "./PantryContainer/PantryContainer.jsx";
 //React entry point
 const App = () => {
   const { displayShopping, displayPantry } = useSelector((state) => state.ui);
-  console.log("displayShopping", displayShopping);
 
   return (
     <div className="container mx-auto bg-gray-200">
@@ -19,5 +18,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;

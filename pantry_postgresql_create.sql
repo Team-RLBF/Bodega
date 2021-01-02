@@ -66,7 +66,7 @@ CREATE TABLE public.auth
 -- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'Chicken', 'Rotissarie', 'Whole', '1', 'Deli');
 -- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'Roast Beef', 'Sandwich Cut', '16oz Pkg', '1', 'Deli');
 -- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'Cheddar', 'Extra Sharp', '16oz Block', '1', 'Deli');
--- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'Deoderant', 'Old Spice', 'Dual-Pack', '1', 'Misc');
+-- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'Deoderant', 'Old Spice', 'Dual-Pack', '1', 'Misc.');
 -- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'T-Shirts', 'Medium', '3-Pack', '1', 'Clothes');
 -- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'Coffee', 'Whole Bean', '2lb', '1', 'Dry Goods');
 -- INSERT INTO public.shopping (user_id, item_name, note, unit, list_qty, category) VALUES (1, 'Ranch Dressing', 'Buttermilk', '12oz Bottle', '1', 'Fridge');

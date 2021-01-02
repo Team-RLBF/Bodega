@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PantryItem from "./PantryItem.jsx";
-import {
-  getPantryItems,
-  loadPantryItem,
-} from "../../store/actions/pantryActions.js";
+import { getPantryItems } from "../../store/actions/pantryActions.js";
 
 //Container for all pantry items
 const PantryContainer = () => {

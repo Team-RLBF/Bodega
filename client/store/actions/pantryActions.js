@@ -17,7 +17,6 @@ export const loadPantryItem = (items) => ({
 // Add Shopping Items
 export const ADD_PANTRY_ITEM = "ADD_PANTRY_ITEM";
 export const addPantryItem = (item) => (dispatch) => {
-  console.log("pantry item", item);
   axios.post("/api/pantry/submit", item).then(({ data }) => {
     dispatch(loadPantryItem(data));
   });
@@ -59,8 +58,9 @@ export const minusQty = (id) => (dispatch) => {
   });
 };
 
-//Decrements Required Stock qty in pantry
+//Increments Required Stock qty in pantry
 //PUT to /api/pantry/parup/:id
+//Relative to AddParPantry component
 export const ADD_PAR = "ADD_PAR";
 export const addPar = (id) => (dispatch) => {
   axios.put(`/api/pantry/parup/${id}`).then(({ data }) => {
@@ -68,6 +68,9 @@ export const addPar = (id) => (dispatch) => {
   });
 };
 
+//Decrements Required Stock qty in pantry
+//PUT to /api/pantry/pardown/:id
+//Relative to MinusParPantry component
 export const MINUS_PAR = "MINUS_PAR";
 export const minusPar = (id) => (dispatch) => {
   axios.put(`/api/pantry/pardown/${id}`).then(({ data }) => {

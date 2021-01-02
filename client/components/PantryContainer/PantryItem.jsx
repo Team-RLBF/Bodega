@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getPantryItems } from "../../store/actions/pantryActions";
+import React, { useState } from "react";
 import UpdateButtonPantry from "./UpdateButtonPantry.jsx";
 import DeleteButtonPantry from "./DeleteButtonPantry.jsx";
 import MinusButtonPantry from "./MinusButtonPantry.jsx";
@@ -36,9 +34,12 @@ const PantryItem = ({ newItem }) => {
               <div>
                 <strong>In Stock</strong>
               </div>
-              <p className="text-3xl font-semibold text-blue-700  truncate">
-                {qty}
-              </p>
+              <div className="flex flex-row justify-center items-center">
+                <div className="text-3xl font-semibold text-blue-700  truncate">
+                  {qty}
+                </div>
+                <div className="ml-3">{unit}</div>
+              </div>
               <div className="flex flex-row">
                 <MinusButtonPantry _id={_id} />
                 <AddButtonPantry _id={_id} />
@@ -49,9 +50,12 @@ const PantryItem = ({ newItem }) => {
               <div>
                 <strong>Required Stock</strong>
               </div>
-              <p className="text-3xl font-semibold text-blue-700  truncate">
-                {par}
-              </p>
+              <div className="flex flex-row justify-center items-center">
+                <div className="text-3xl font-semibold text-blue-700  truncate">
+                  {par}
+                </div>
+                <div className="ml-3">{unit}</div>
+              </div>
               <div className="flex flex-row">
                 <MinusParPantry _id={_id} />
                 <AddParPantry _id={_id} />
