@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addBuyQty } from "../../store/actions/shoppingActions";
 
+// Increments Required stock QTY
 const AddBuyButton = ({ _id }) => {
   const dispatch = useDispatch();
   

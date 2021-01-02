@@ -6,6 +6,7 @@ import {
   loadPantryItem,
 } from "../../store/actions/pantryActions.js";
 
+//Container for all pantry items
 const PantryContainer = () => {
   const pantryItems = useSelector((state) => state.pantry.pantryList);
   const dispatch = useDispatch();

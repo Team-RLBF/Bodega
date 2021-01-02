@@ -1,5 +1,6 @@
 const db = require('../../db.js');
 
+// decrease the pantry item qty by 1
 const pantryItemUp = (req, res, next) => {
     let id = req.params.id;
 

@@ -1,5 +1,7 @@
 import React from "react";
 
+//Search bar for shopping list
+//No functionality at this time
 export const SearchBar = () => {
   return (
     <>

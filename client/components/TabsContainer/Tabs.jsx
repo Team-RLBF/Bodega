@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleTabs } from "../../store/actions/uiActions.js";
 
+//Allows for toggle feature between pantry and shopping list
 export const Tabs = () => {
   const dispatch = useDispatch();
   const [showShopping, setShowShopping] = useState(true);

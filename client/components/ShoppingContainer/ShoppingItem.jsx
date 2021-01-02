@@ -8,6 +8,8 @@ import AddListButton from "./AddListButton.jsx";
 import MinusBuyButton from "./MinusBuyButton.jsx";
 import AddBuyButton from "./AddBuyButton.jsx";
 
+//Individual shopping item component
+//Pulls in newItem from container as prop(destructured as param)
 const ShoppingItem = ({ newItem }) => {
   const { displayShopping } = useSelector((state) => state.ui);
   const {

@@ -20,6 +20,7 @@ export const AddItem = () => {
   const [unit, setUnit] = useState("");
   const [note, setNote] = useState("");
   const [par, setPar] = useState("");
+  const [pantryQty, setPantryQty] = useState("");
 
   //onClick Function (Save Changes) to sent user data
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ export const AddItem = () => {
     if (displayPantry) dispatch(addPantryItem(dataSet));
     hideModal();
   };
-  console.log(displayPantry, "dipslay panatryal");
+
   useEffect(() => {
     ifEditTrue();
   }, [isEdit]);
@@ -61,18 +62,24 @@ export const AddItem = () => {
     let list_qty = "";
     let category = "";
     let note = "";
+    let par = "";
+    let qty = ""
     if (isEdit) {
       category = updatedItem.category;
       item_name = updatedItem.item_name;
       list_qty = updatedItem.list_qty;
       note = updatedItem.note;
       unit = updatedItem.unit;
+      par = updatedItem.par;
+      qty = updatedItem.list_qty;
     }
     setItemName(item_name);
     setQuantity(list_qty);
     setUnit(unit);
     setNote(note);
     setCategory(category);
+    setPar(par);
+    setPantryQty(qty);
   };
   const sendEdit = () => {
     let editItem = {
@@ -82,10 +89,15 @@ export const AddItem = () => {
       list_qty,
       category,
       note,
+      par,
+      qty: list_qty,
     };
-    dispatch(updateShoppingItem(editItem));
+    if (displayShopping) dispatch(updateShoppingItem(editItem));
+    if (displayPantry) dispatch(updatePantryItem(editItem));
     hideModal();
   };
+
+  console.log(pantryQty,'pan qty')
   return (
     <>
       <button
@@ -144,8 +156,8 @@ export const AddItem = () => {
                         <input
                           className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                           type="text"
-                          placeholder={list_qty}
-                          value={list_qty}
+                          placeholder={displayShopping ? list_qty : pantryQty}
+                          value={displayShopping ? list_qty : pantryQty}
                           onChange={(e) => setQuantity(e.target.value)}
                         ></input>
                       </div>
@@ -179,6 +191,7 @@ export const AddItem = () => {
                           value={unit}
                           onChange={(e) => setUnit(e.target.value)}
                         >
+                          <option>--</option>
                           <option>oz</option>
                           <option>lb</option>
                           <option>each</option>
@@ -201,9 +214,13 @@ export const AddItem = () => {
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
                         >
+                          <option>Dry Goods</option>
+                          <option>Frozen</option>
                           <option>Dairy</option>
                           <option>Meat</option>
                           <option>Produce</option>
+                          <option>Household Supplies</option>
+                          <option>Misc.</option>
                         </select>
                       </div>
                     </div>
