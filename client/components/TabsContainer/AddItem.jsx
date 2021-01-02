@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { SearchBar } from "./SearchBar.jsx";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -13,9 +12,9 @@ import {
 import { displayEditor } from "../../store/actions/uiActions.js";
 
 export const AddItem = () => {
-  // const [showModal, setShowModal] = useState(false);
+  //setting component state
   const [item_name, setItemName] = useState("");
-  const [list_qty, setQuantity] = useState("");
+  const [list_qty, setQuantity] = useState(0);
   const [category, setCategory] = useState("Dairy");
   const [unit, setUnit] = useState("");
   const [note, setNote] = useState("");
@@ -25,18 +24,26 @@ export const AddItem = () => {
   //onClick Function (Save Changes) to sent user data
   const dispatch = useDispatch();
 
+  //gets the item that is to be updated by id from either pantry or shopping list
   const updatedItem = useSelector((state) => state.shopping.updatedItem);
+
+  //get the ui states for displaying the modal, and whether the item is being edited (or is new), and which tab the user is clicked on (shopping or pantry)
   const { displayModal, isEdit, displayShopping, displayPantry } = useSelector(
     (state) => state.ui
   );
 
+  // sets ADD ITEM Modal odal state to display
   const showModal = () => {
     dispatch(displayEditor(true, false));
   };
+
+  // sets ADD ITEM Modal odal state to  not display
   const hideModal = () => {
     dispatch(displayEditor(false, false));
   };
 
+  //function that dispatches the post request to either the shopping or pantry database, based on the tab the user is clicked on.
+  //'qty' is specific to the pantry, but the input for either list is 'list_qty' so 'qty' is set using the 'list_qty' value.
   const sendNewItem = () => {
     const dataSet = {
       item_name,
@@ -47,23 +54,31 @@ export const AddItem = () => {
       qty: list_qty,
       par,
     };
-    if (displayShopping) dispatch(addShoppingItem(dataSet));
-    if (displayPantry) dispatch(addPantryItem(dataSet));
+    if (displayShopping) {
+      dispatch(addShoppingItem(dataSet));
+    } //if the user is clicked on the shopping list tab, send to shopping list DB
+    else if (displayPantry) {
+      dispatch(addPantryItem(dataSet));
+    } //if the user is clicked on the pantry list tab, send to shopping list DB
     hideModal();
   };
 
+  //if the user clicks on the update button, that will change 'isEdit' in the Apps state. When that happens the 'ifEditTrue' function will run to set the component state.
   useEffect(() => {
     ifEditTrue();
   }, [isEdit]);
 
+  //This function sets the component state, when the updated button is clicked.This is so that the place holders and values are pre populated for the user when they go to edit.
   const ifEditTrue = () => {
+    //clears the input fields if the user clicks the 'Add item' button, so that previous data is not in the placeholders.
     let item_name = "";
     let unit = "";
-    let list_qty = "";
+    let list_qty = 0;
     let category = "";
     let note = "";
     let par = "";
     let qty = "";
+    //sets the input fields values from the item object, if the user clicked on the update button.
     if (isEdit) {
       category = updatedItem.category;
       item_name = updatedItem.item_name;
@@ -81,6 +96,9 @@ export const AddItem = () => {
     setPar(par);
     setPantryQty(qty);
   };
+
+  //function that dispatches the post request to either the shopping or pantry database to update the item, based on the tab the user is clicked on.
+
   const sendEdit = () => {
     let editItem = {
       ...updatedItem,
@@ -92,28 +110,24 @@ export const AddItem = () => {
       par,
       qty: pantryQty,
     };
-    if (displayShopping) dispatch(updateShoppingItem(editItem));
-    if (displayPantry) dispatch(updatePantryItem(editItem));
-    hideModal();
+    if (displayShopping) dispatch(updateShoppingItem(editItem)); //if the user is clicked on the shopping list tab, send to shopping list DB
+    if (displayPantry) dispatch(updatePantryItem(editItem)); //if the user is clicked on the pantry list tab, send to shopping list DB
+    hideModal(); //hide modal after user saves changes
   };
 
-  console.log(pantryQty, "pan qty");
   return (
     <>
       <button
         type="button"
         className="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         style={{ transition: "all .15s ease" }}
-        onClick={showModal}
+        onClick={showModal} //show modal after user clicks add item button
       >
         Add Item
       </button>
       {displayModal ? (
         <>
-          <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-            // onClick={() => setShowModal(false)}
-          >
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -156,7 +170,7 @@ export const AddItem = () => {
                         <input
                           className="focus:ring-indigo-500 focus:border-indigo-500 block m-3 w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                           type="text"
-                          placeholder={displayShopping ? list_qty : pantryQty}
+                          placeholder={displayShopping ? list_qty : pantryQty} //shows the correct quantity based on whether the user in in the shopping tab or pantry tab
                           value={displayShopping ? list_qty : pantryQty}
                           onChange={(e) =>
                             displayShopping
@@ -202,6 +216,8 @@ export const AddItem = () => {
                           <option>gallon</option>
                           <option>gram</option>
                           <option>dozen</option>
+                          <option>box</option>
+                          <option>can</option>
                         </select>
                       </div>
                     </div>
@@ -219,11 +235,17 @@ export const AddItem = () => {
                           onChange={(e) => setCategory(e.target.value)}
                         >
                           <option>Dry Goods</option>
+                          <option>Canned Goods</option>
+                          <option>Fridge</option>
                           <option>Frozen</option>
                           <option>Dairy</option>
+                          <option>Bakery</option>
+                          <option>Deli</option>
                           <option>Meat</option>
                           <option>Produce</option>
+                          <option>Alcohol</option>
                           <option>Household Supplies</option>
+                          <option>Clothes</option>
                           <option>Misc.</option>
                         </select>
                       </div>
@@ -257,11 +279,9 @@ export const AddItem = () => {
                     Close
                   </button>
                   <button
-                    onClick={isEdit ? sendEdit : sendNewItem}
+                    onClick={isEdit ? sendEdit : sendNewItem} //if the user clicks on the update button, is Edit will be true and will call the edit function, if false (user clicks on Add item button) calls the send new item function
                     className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
-                    // style={{ transition: "all .15s ease" }}
-                    // onClick={isEdit ? sendEdit : sendTrade}
                   >
                     Save Changes
                   </button>

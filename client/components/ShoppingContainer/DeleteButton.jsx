@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  loadShoppingItem,
-  deleteShoppingItem,
-  DELETE_SHOPPING_ITEM,
-} from "../../store/actions/shoppingActions";
+import { deleteShoppingItem } from "../../store/actions/shoppingActions";
 import { useDispatch } from 'react-redux';
 
 //Deletes single item from shopping list
@@ -22,5 +18,6 @@ const DeleteButton = ({ _id }) => {
     </>
   );
 };
+
 
 export default DeleteButton;

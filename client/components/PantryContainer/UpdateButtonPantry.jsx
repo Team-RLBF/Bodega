@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import {  loadEditedItem} from "../../store/actions/shoppingActions";
+import { loadEditedItem} from "../../store/actions/shoppingActions";
 import { displayEditor } from "../../store/actions/uiActions.js";
 
 //Updates individual pantry item

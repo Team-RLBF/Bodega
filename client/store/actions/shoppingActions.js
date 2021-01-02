@@ -2,9 +2,14 @@ import axios from "axios";
 
 // Get Shopping Items
 export const getShoppingItems = () => (dispatch) => {
-  axios.get("/api/shopping").then(({ data }) => {
-    dispatch(loadShoppingItem(data));
-  });
+  axios
+    .get("/api/shopping")
+    .then(({ data }) => {
+      dispatch(loadShoppingItem(data));
+    })
+    .catch((error) =>
+      console.log("error in load shopping items action", error)
+    );
 };
 
 // Load Shopping Item
@@ -14,6 +19,7 @@ export const loadShoppingItem = (items) => ({
   payload: items,
 });
 
+// Load Edited Item
 export const LOAD_EDITED_ITEM = "LOAD_EDITED_ITEM";
 export const loadEditedItem = (item) => ({
   type: LOAD_EDITED_ITEM,
@@ -52,6 +58,9 @@ export const checkoutBasket = (shoppingList) => (dispatch) => {
   });
 };
 
+// Increments List qty
+// POST to /api/shopping/listUp/:id
+// Relative to AddListButton component
 export const ADD_LIST_QTY = "ADD_QTY";
 export const addListQty = (id) => (dispatch) => {
   axios.post(`/api/shopping/listUp/${id}`).then(({ data }) => {
@@ -59,6 +68,9 @@ export const addListQty = (id) => (dispatch) => {
   });
 };
 
+// Decrements List qty
+// POST to /api/shopping/listDown/:id
+// Relative to MinusListButton component
 export const MINUS_LIST_QTY = "MINUS_QTY";
 export const minusListQty = (id) => (dispatch) => {
   axios.post(`/api/shopping/listDown/${id}`).then(({ data }) => {
@@ -66,6 +78,9 @@ export const minusListQty = (id) => (dispatch) => {
   });
 };
 
+// Increments Buy qty
+// POST to /api/shopping/buyUp/:id
+// Relative to AddBuyButton component
 export const ADD_BUY_QTY = "ADD_QTY";
 export const addBuyQty = (id) => (dispatch) => {
   axios.post(`/api/shopping/buyUp/${id}`).then(({ data }) => {
@@ -73,6 +88,9 @@ export const addBuyQty = (id) => (dispatch) => {
   });
 };
 
+// Decrements Buy qty
+// POST to /api/shopping/buyDown/:id
+// Relative to MinusBuyButton component
 export const MINUS_BUY_QTY = "MINUS_QTY";
 export const minusBuyQty = (id) => (dispatch) => {
   axios.post(`/api/shopping/buyDown/${id}`).then(({ data }) => {
@@ -80,6 +98,9 @@ export const minusBuyQty = (id) => (dispatch) => {
   });
 };
 
+// Sends purchased items into pantry and removes from shopping
+// POST to /api/shopping/checkout
+// Relative to TabsContainer/CheckoutButton component
 export const CHECKOUT_BTN = "CHECKOUT_BTN";
 export const checkoutBtn = () => (dispatch) => {
   axios.post("/api/shopping/checkout").then(({ data }) => {
@@ -87,6 +108,9 @@ export const checkoutBtn = () => (dispatch) => {
   });
 };
 
+// Adds item from pantry onto shopping list
+// POST to /api/shopping/addFromPantry/:id
+// Relative to AddFromPantryBtn component
 export const ADD_FROM_PANTRY = "ADD_FROM_PANTRY";
 export const addFromPantry = (id) => (dispatch) => {
   console.log(id, "pantry id thing");

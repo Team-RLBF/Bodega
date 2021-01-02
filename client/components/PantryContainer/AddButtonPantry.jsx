@@ -36,4 +36,5 @@ const AddButtonPantry = ({ _id }) => {
   );
 };
 
+
 export default AddButtonPantry;

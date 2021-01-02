@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getShoppingItems } from "../../store/actions/shoppingActions";
+import React from "react";
+import { useSelector } from "react-redux";
 import UpdateButton from "./UpdateButton.jsx";
 import DeleteButton from "./DeleteButton.jsx";
 import MinusListButton from "./MinusListButton.jsx";
@@ -12,6 +11,7 @@ import AddBuyButton from "./AddBuyButton.jsx";
 //Pulls in newItem from container as prop(destructured as param)
 const ShoppingItem = ({ newItem }) => {
   const { displayShopping } = useSelector((state) => state.ui);
+
   const {
     item_name,
     category,
@@ -23,7 +23,7 @@ const ShoppingItem = ({ newItem }) => {
     pantry_par,
     pantry_qty,
   } = newItem;
-  console.log("display shlsdf", displayShopping);
+
   return (
     <>
       <li>
@@ -86,5 +86,6 @@ const ShoppingItem = ({ newItem }) => {
     </>
   );
 };
+
 
 export default ShoppingItem;
