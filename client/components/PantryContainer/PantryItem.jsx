@@ -6,6 +6,8 @@ import DeleteButtonPantry from "./DeleteButtonPantry.jsx";
 import MinusButtonPantry from "./MinusButtonPantry.jsx";
 import AddButtonPantry from "./AddButtonPantry.jsx";
 import AddFromPantryBtn from "./AddFromPantryBtn.jsx";
+import AddParPantry from './AddParPantry.jsx';
+import MinusParPantry from './MinusParPantry.jsx';
 import Notification from "./Notification.jsx";
 
 const PantryItem = ({ newItem }) => {
@@ -49,8 +51,8 @@ const PantryItem = ({ newItem }) => {
                 {par}
               </p>
               <div className="flex flex-row">
-                <MinusButtonPantry _id={_id} />
-                <AddButtonPantry _id={_id} />
+                <MinusParPantry _id={_id} />
+                <AddParPantry _id={_id} />
               </div>
             </div>
           </div>
