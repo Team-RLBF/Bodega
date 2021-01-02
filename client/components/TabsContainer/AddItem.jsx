@@ -63,7 +63,7 @@ export const AddItem = () => {
     let category = "";
     let note = "";
     let par = "";
-    let qty = ""
+    let qty = "";
     if (isEdit) {
       category = updatedItem.category;
       item_name = updatedItem.item_name;
@@ -71,7 +71,7 @@ export const AddItem = () => {
       note = updatedItem.note;
       unit = updatedItem.unit;
       par = updatedItem.par;
-      qty = updatedItem.list_qty;
+      qty = updatedItem.qty;
     }
     setItemName(item_name);
     setQuantity(list_qty);
@@ -90,14 +90,14 @@ export const AddItem = () => {
       category,
       note,
       par,
-      qty: list_qty,
+      qty: pantryQty,
     };
     if (displayShopping) dispatch(updateShoppingItem(editItem));
     if (displayPantry) dispatch(updatePantryItem(editItem));
     hideModal();
   };
 
-  console.log(pantryQty,'pan qty')
+  console.log(pantryQty, "pan qty");
   return (
     <>
       <button
@@ -158,7 +158,11 @@ export const AddItem = () => {
                           type="text"
                           placeholder={displayShopping ? list_qty : pantryQty}
                           value={displayShopping ? list_qty : pantryQty}
-                          onChange={(e) => setQuantity(e.target.value)}
+                          onChange={(e) =>
+                            displayShopping
+                              ? setQuantity(e.target.value)
+                              : setPantryQty(e.target.value)
+                          }
                         ></input>
                       </div>
                     </div>
