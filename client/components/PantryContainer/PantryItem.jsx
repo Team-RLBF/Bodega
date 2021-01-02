@@ -6,10 +6,12 @@ import DeleteButtonPantry from "./DeleteButtonPantry.jsx";
 import MinusButtonPantry from "./MinusButtonPantry.jsx";
 import AddButtonPantry from "./AddButtonPantry.jsx";
 import AddFromPantryBtn from "./AddFromPantryBtn.jsx";
+import AddParPantry from './AddParPantry.jsx';
+import MinusParPantry from './MinusParPantry.jsx';
 import Notification from "./Notification.jsx";
 
 const PantryItem = ({ newItem }) => {
-  const { item_name, category, qty, note, unit, _id } = newItem;
+  const { item_name, category, qty, note, unit, _id, par } = newItem;
 
   const [showAlert, setShowAlert] = useState(false);
 
@@ -46,11 +48,11 @@ const PantryItem = ({ newItem }) => {
                 <strong>Required Stock</strong>
               </div>
               <p className="text-3xl font-semibold text-blue-700  truncate">
-                {qty}
+                {par}
               </p>
               <div className="flex flex-row">
-                <MinusButtonPantry _id={_id} />
-                <AddButtonPantry _id={_id} />
+                <MinusParPantry _id={_id} />
+                <AddParPantry _id={_id} />
               </div>
             </div>
           </div>

@@ -43,3 +43,17 @@ export const minusQty = (id) => (dispatch) => {
     dispatch(loadPantryItem(data));
   });
 };
+
+export const ADD_PAR = "ADD_PAR";
+export const addPar = (id) => (dispatch) => {
+  axios.put(`/api/pantry/parup/${id}`).then(({ data }) => {
+    dispatch(loadPantryItem(data));
+  });
+};
+
+export const MINUS_PAR = "MINUS_PAR";
+export const minusPar = (id) => (dispatch) => {
+  axios.put(`/api/pantry/pardown/${id}`).then(({ data }) => {
+    dispatch(loadPantryItem(data));
+  });
+};
